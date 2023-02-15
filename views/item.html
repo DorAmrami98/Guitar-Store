@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %} | {{ guitar_data.name }}{% endblock title %}
+{% block content %}
+<div class="container my-5">
+<div class="row">
+<div class="col-md-9 mx-auto">
+  <div class="card">
+    <div class="row">
+      <div class="col">
+        <img src="{{ guitar_data.image }}" alt="electric guitar" width="350px">
+      </div>
+      <div class="col">
+        <div class="card-body">
+          <h4 class="card-title text-center">{{ guitar_data.name }}</h4>
+          <table class="table table sm">
+          <tbody>
+            <tr>
+                <td>Manufacturer</td>
+                <td>:</td>
+                <td>{{ guitar_data.manufacturer }}</td>
+            </tr>
+            <tr>
+                <td>Strings</td>
+                <td>:</td>
+                <td>{{ guitar_data.number_of_strings }}</td>
+            </tr>
+            <tr>
+                <td>Wood type</td>
+                <td>:</td>
+                <td>{{ guitar_data.wood_type }}</td>
+            </tr>
+            <tr>
+                <td>Body type</td>
+                <td>:</td>
+                <td>{{ guitar_data.body_type }}</td>
+            </tr>
+            <tr>
+                <td>Frets</td>
+                <td>:</td>
+                <td>{{ guitar_data.frets }}</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>:</td>
+                <td>&dollar;{{ guitar_data.price }}</td>
+            </tr>
+          </tbody>
+          </table>
+          <div class="text-center">
+            <button type="button" id="purchase_btn" class="btn btn-outline-info">Purchase Now <i class="fas fa-cart-arrow-down"></i></button>
+          </div>
+          <div class="mt-4 purchase_msg d-none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock content %}
+{% block script %}
+<script>
+$("#purchase_btn").click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: "/purchase",
+        type: "POST",
+        data: {user: "{{ user }}", guitar: "{{ guitar_data.id }}"},
+        success: function(res){
+            $(".purchase_msg").removeClass("d-none");
+            if(res === "0"){
+                $(".purchase_msg").html(`<div class="alert alert-success alert-dismissible fade show" role="alert"><img src="/assets/favicon.ico" width="25px"> This guitar is free today<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button></div>`);
+            }else{
+                $(".purchase_msg").html(`<div class="alert alert-danger alert-dismissible fade show" role="alert">please login before make any purchase!<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button></div>`);
+            }
+            setTimeout(() => {
+                $(".purchase_msg").html("");
+                $(".purchase_msg").addClass("d-none");
+            }, 3000);
+        }
+    });
+});
+</script>
+{% endblock script %}
