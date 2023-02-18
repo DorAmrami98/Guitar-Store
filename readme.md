@@ -17,6 +17,8 @@ then open your browser and visit at this url: `http://localhost:8080` (it's a de
 
 ### Database -
 SQLite is the primary database. Its a in-directory database system that stored inside application folder `database.db`. NodeJS and Sequelize will automatically create tables and relations by itself.
+You can download `DB Browser for SQLite` and change the database as you please.
+
 
 
 ## Conclusions
