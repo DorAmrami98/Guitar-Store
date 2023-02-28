@@ -25,4 +25,4 @@ SQLite is the primary database. Its a in-directory database system that stored i
 `npm run dev` will continuously look to your files for detect any changes in code then it will restart the server by itself but if you just wanna use `npm start` or `node server.js` it will works fine but if you make any changes in the code then you have to restart the server using `ctrl+c` press multiple times... if it ask any `y/n` then type `y` and press enter. then start the server again with `npm start` or `node server.js`.
 And for the database, no need any configuration... just run the server
 
-< a href = "https://electric-guitar-demo-store.onrender.com/"> Our Website Link </a>
+< a href="https://electric-guitar-demo-store.onrender.com/" target="_blank" > Our Website Link </a>
